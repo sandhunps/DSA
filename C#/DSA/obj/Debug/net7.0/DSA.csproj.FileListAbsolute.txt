@@ -1,0 +1,15 @@
+/Users/sandhun/Projects/DSA/C#/DSA/bin/Debug/net7.0/DSA
+/Users/sandhun/Projects/DSA/C#/DSA/bin/Debug/net7.0/DSA.deps.json
+/Users/sandhun/Projects/DSA/C#/DSA/bin/Debug/net7.0/DSA.runtimeconfig.json
+/Users/sandhun/Projects/DSA/C#/DSA/bin/Debug/net7.0/DSA.dll
+/Users/sandhun/Projects/DSA/C#/DSA/bin/Debug/net7.0/DSA.pdb
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.csproj.AssemblyReference.cache
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.GeneratedMSBuildEditorConfig.editorconfig
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.AssemblyInfoInputs.cache
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.AssemblyInfo.cs
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.csproj.CoreCompileInputs.cache
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.dll
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/refint/DSA.dll
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.pdb
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/DSA.genruntimeconfig.cache
+/Users/sandhun/Projects/DSA/C#/DSA/obj/Debug/net7.0/ref/DSA.dll
