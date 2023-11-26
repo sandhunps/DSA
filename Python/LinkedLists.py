@@ -66,6 +66,30 @@ def Insert_ith_node(head, i , data):
 
     print(F"No Node found at {i}th Position")
     return head
+
+def delete_ith_Node(head, i):
+    if (i == 0):
+        new_head = head.next
+        head.next = None # Dissconnet the node
+        return new_head
+    
+    currNode = head
+    prevNode = None
+    index = 0
+
+    while currNode != None:
+        if i == index:
+            prevNode.next = currNode.next
+            currNode.next = None #Disconnect the node
+            return head
+        prevNode = currNode
+        currNode = currNode.next
+        index += 1
+
+    print(F"No such node {i}th position")
+    return head
+    
+
     
 
 
@@ -76,6 +100,8 @@ def main():
     Print_ith_node(head, 3)
 
     head = Insert_ith_node(head , 7 , 6)
+
+    head = delete_ith_Node(head, 6)
 
 
     while head != None:
