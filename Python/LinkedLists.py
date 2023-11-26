@@ -31,7 +31,7 @@ def takeInput():
 
     inputList = [int(ele) for ele in input().split()]
     head = None
-    currNode = None
+    tail = None
     for ele in inputList:
 
         if ele == -1:
@@ -39,13 +39,16 @@ def takeInput():
 
         newNode = Node(ele)
 
-        if currNode != None:
-            currNode.next = newNode
-        
-        currNode = newNode
-
-        if head is None:
+        # For first element set head and tail 
+        # For rest , keep head the same. 
+        if head != None:
             head = newNode
+            tail = newNode
+        else:
+            # Linking newnode with previous node
+            tail.next = newNode
+            tail = newNode
+        
 
     return head
 
