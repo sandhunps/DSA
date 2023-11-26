@@ -39,11 +39,33 @@ def Print_ith_node(head, i):
         head = head.next
     print(f"Error: The index {i} was not found")
 
+def Insert_ith_node(head, i , data):
+    newNode = Node(data)
+    node_pointer = 0
+    curr = head
+
+
+    while curr != None:
+        if i == node_pointer-1:
+            newNode.next = curr.next
+            curr.next = newNode
+            return head
+        node_pointer += 1
+        curr = curr.next
+    
+
+        
+
+
+
 
 def main():
     head = takeInput()
 
     Print_ith_node(head, 3)
+
+    head = Insert_ith_node(head , 3 , 4)
+
 
     while head != None:
         print(head.data , head , head.next , sep=", ")
