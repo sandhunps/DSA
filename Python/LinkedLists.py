@@ -28,8 +28,22 @@ def takeInput():
     return head
 
 
+def Print_ith_node(head, i):
+    node_pointer = 0
+    
+    while head != None:
+        if i == node_pointer:
+            print(f"The value of the {i}th node is: {head.data}")
+            return
+        node_pointer += 1
+        head = head.next
+    print(f"Error: The index {i} was not found")
+
+
 def main():
     head = takeInput()
+
+    Print_ith_node(head, 3)
 
     while head != None:
         print(head.data , head , head.next , sep=", ")
