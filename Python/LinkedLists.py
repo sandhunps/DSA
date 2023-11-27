@@ -103,7 +103,20 @@ def delete_ith_Node(head, i):
     return head
     
 
+def delete_ith_Node_Recursively(head , i):
     
+    if head is None:
+        return None
+
+    if i == 0:
+        newhead = head.next
+        head.next = None
+        return newhead
+    
+    
+    head.next = delete_ith_Node_Recursively(head.next, i-1)
+    return head
+
 
 
 
@@ -114,7 +127,7 @@ def main():
 
     head = Insert_ith_node_Recursively(head , 2 , 6)
 
-    head = delete_ith_Node(head, 6)
+    head = delete_ith_Node_Recursively(head, 2)
 
 
     while head != None:
