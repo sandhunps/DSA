@@ -67,6 +67,19 @@ def Insert_ith_node(head, i , data):
     print(F"No Node found at {i}th Position")
     return head
 
+def Insert_ith_node_Recursively(head, i, data):
+    newNode = Node(data)
+    
+    if i == 0 and head is not None:
+        newNode.next = head
+        head = newNode
+        return newNode
+        
+
+    head.next = Insert_ith_node_Recursively(head.next,i-1,data)
+    return head
+    
+
 def delete_ith_Node(head, i):
     if (i == 0):
         new_head = head.next
@@ -99,7 +112,7 @@ def main():
 
     Print_ith_node(head, 3)
 
-    head = Insert_ith_node(head , 7 , 6)
+    head = Insert_ith_node_Recursively(head , 2 , 6)
 
     head = delete_ith_Node(head, 6)
 
