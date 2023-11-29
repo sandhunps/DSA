@@ -1,9 +1,23 @@
 import LinkedLists1 as LL1
 
-if __name__ == "__main__":
+def reverseLL(head):
+    curr = head
+    prev = None
 
+    while curr is not None:
+        tempnode = curr.next
+        curr.next = prev
+
+        prev = curr
+        curr = tempnode
+    return prev
+
+
+if __name__ == "__main__":
     head = LL1.takeInput()
 
-    LL1.Print_ith_node(head ,3)
+    head = reverseLL(head)
 
-         
+    while head is not None:
+        print(head.data)
+        head = head.next

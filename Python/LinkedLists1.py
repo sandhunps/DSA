@@ -1,3 +1,5 @@
+import LinkedLists2 as LL2
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -128,7 +130,9 @@ def main():
     head = Insert_ith_node_Recursively(head , 2 , 6)
 
     head = delete_ith_Node_Recursively(head, 2)
-
+     
+    head = LL2.reverseLL(head)
+    
 
     while head != None:
         print(head.data , head , head.next , sep=", ")
