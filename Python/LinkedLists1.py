@@ -119,19 +119,57 @@ def delete_ith_Node_Recursively(head , i):
     head.next = delete_ith_Node_Recursively(head.next, i-1)
     return head
 
+def removeNthFromEnd(head:Node, n: int):
+        len = 0
+        node = head
+        while node:
+            node = node.next
+            len += 1
+        
+        delNode = (len-n)+1
 
+        dummy = Node(-1)
+        dummy.next = head
+        prev = dummy
+        curr = head
+        k = 1
+
+        while curr:
+            if(k == delNode):
+                prev.next = curr.next
+                return dummy.next
+            else:
+                prev = curr
+                curr = curr.next
+                k += 1
+        return dummy.next
+
+
+def swapPairs(head: Node):
+        dummy = Node(-1)
+        dummy.next = head
+        prev = dummy
+        curr = head
+
+        while(curr and curr.next):
+            prev.next.next = curr.next
+
+            prev = curr
+            curr = curr.next
+        return dummy.next
 
 
 def main():
     head = takeInput()
+    #head =  removeNthFromEnd(head=head, n=2)
+    head  = swapPairs(head)
+    # Print_ith_node(head, 3)
 
-    Print_ith_node(head, 3)
+    # head = Insert_ith_node_Recursively(head , 2 , 6)
 
-    head = Insert_ith_node_Recursively(head , 2 , 6)
-
-    head = delete_ith_Node_Recursively(head, 2)
+    # head = delete_ith_Node_Recursively(head, 2)
      
-    head = LL2.reverseLL(head)
+    # head = LL2.reverseLL(head)
     
 
     while head != None:
