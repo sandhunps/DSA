@@ -6,8 +6,8 @@ using System.Reflection.Metadata.Ecma335;
 Console.WriteLine("Hello, World!");
 int[] arr = {3,4,-1,1};
 
-var sort = new InsertionSort();
-sort.Sort(arr);
+var sort = new Sort();
+sort.BubbleSort(arr);
 Console.WriteLine("Array elements: " + string.Join(" ", arr));
 
 
