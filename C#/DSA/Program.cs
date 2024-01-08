@@ -6,9 +6,9 @@ using System.Reflection.Metadata.Ecma335;
 Console.WriteLine("Hello, World!");
 int[] arr = {3,4,-1,1};
 
-var sort = new CyclicSort();
-var missng = sort.FirstMissingPositive(arr);
-Console.WriteLine("Array elements: " + string.Join(" ", missng));
+var sort = new InsertionSort();
+sort.Sort(arr);
+Console.WriteLine("Array elements: " + string.Join(" ", arr));
 
 
 public class Solution {
@@ -30,30 +30,5 @@ public class Solution {
         else
             return false;
         
-    }
-}
-
-public class Sort
-{
-    public void InsertionSort(int[] arr)
-    {
-        var len = arr.Length;
-
-        for (int i = 0; i < len-1; i++)
-        {
-            for(int j = i+1; j > 0; j--)
-            {
-                if(arr[j] < arr[j-1])
-                {
-                    var temp =  arr[j-1];
-                    arr[j-1] = arr[j];
-                    arr[j] = temp;
-                }
-                else{
-                    break;
-                }
-            }
-        }
-
     }
 }
