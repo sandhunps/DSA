@@ -28,7 +28,7 @@ public class CyclicSort
     /// </summary>
     /// <param name="nums"></param>
     /// <returns></returns>
-     public int MissingNumber(int[] nums) 
+    public int MissingNumber(int[] nums) 
     {
         
         var len = nums.Length;
@@ -60,7 +60,107 @@ public class CyclicSort
         return j;
     }
 
-    public void Swap(int[] arr, int first, int sec)
+    /// <summary>
+    /// LeetCode : 448. Find All Numbers Disappeared in an Array
+    /// Link : https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/description/
+    /// </summary>
+    /// <param name="arr">Input Array</param>
+    /// <returns></returns>
+    public int[] MissingElements(int[] arr)
+    {
+        var i  = 0;
+        while(i < arr.Length)
+        {
+            var current = arr[i]- 1;
+            if(arr[i] == arr[current])
+            {
+                i++;
+            }
+            else
+            {
+                Swap(arr,i,current);
+            }
+        }
+
+        return arr;
+    }
+
+    /// <summary>
+    /// Leetcode :  287. Find the Duplicate Number
+    /// Link : https://leetcode.com/problems/find-the-duplicate-number/description/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int FindDuplicate(int[] nums) {
+        int i = 0;
+        while(i < nums.Length)
+        {
+            if(nums[i] != i+1)
+            {   
+
+                var corr = nums[i]-1;
+                if(nums[i] != nums[corr])
+                {
+                    //Swap
+                    var temp = nums[corr];
+                    nums[corr] = nums[i];
+                    nums[i] = temp;
+                }
+                else
+                {
+                    return nums[i];
+                }
+            }
+            else 
+            {
+                i++;
+            }
+        }
+        return -1;  
+    }
+
+    /// <summary>
+    /// Leetcode : 41. First Missing Positive
+    /// Link : https://leetcode.com/problems/first-missing-positive/description/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public int FirstMissingPositive(int[] nums) {
+        var i = 0;
+        while(i < nums.Length)
+        {
+            var corr_index = nums[i] - 1;
+            if(nums[i] <= 0 || nums[i] > nums.Length)
+            {
+                i++;
+            }
+            else if(nums[i] == nums[corr_index])
+            {
+                i++;
+            }
+            else
+            {
+                //swap
+                var temp = nums[i];
+                nums[i] = nums[corr_index];
+                nums[corr_index] = temp;
+            }
+            
+        }
+        int j = 0;
+        while(j < nums.Length)
+        {
+            if(nums[j] != j + 1 )
+            {
+                return j+1;
+            }
+            j++;
+        }
+        return -1;    
+    }
+
+
+    private void Swap(int[] arr, int first, int sec)
     {
         var temp = arr[sec];
         arr[sec] = arr[first];
