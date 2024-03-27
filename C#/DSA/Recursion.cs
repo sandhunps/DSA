@@ -2,6 +2,13 @@ using System.Globalization;
 
 public class Recursion
 {
+
+    #region Find all perumtations
+    /// <summary>
+    /// Recursive method 
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
     public static IList<IList<int>> FindAllPermutations(int[] nums)
     {
         IList<IList<int>> res = new List<IList<int>>();
@@ -33,4 +40,5 @@ public class Recursion
 
         
     }
+    #endregion
 }

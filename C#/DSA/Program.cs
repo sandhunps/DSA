@@ -7,10 +7,12 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("This project is running  fine..... ");
-        int[] nums = {1,2,3};
-        var res = Recursion.FindAllPermutations(nums);
+        int[] nums = {1,2,0,1};
+        var res = ArraysDsa.LongestConsecutiveSort(nums);
 
-        Console.WriteLine("DONE");
+        
+        Console.Write(res);
+       
     }
 }
 

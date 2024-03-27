@@ -529,4 +529,363 @@ public class ArraysDsa
         return ans;
     } 
     #endregion
+
+    #region Next Permunatation
+    public void NextPermutation(int[] nums) {
+        int index = -1;
+        int n = nums.Length;
+        for(int i = n -2; i>=0;i--)
+        {
+            if(nums[i]<nums[i+1]){
+                index=i;
+                break;
+            }
+        }
+        if(index == -1){
+            Array.Reverse(nums,0,n-1); 
+            return;
+        }
+        for(int i = n -1; i>=0;i--)
+            {
+                if(nums[index]<nums[i])
+                {
+                    int swap = 0;
+                    swap = nums[i];
+                    nums[i] = nums[index];
+                    nums[index] = swap;
+                    break;
+                }
+            }
+        Array.Reverse(nums, index+1, n-1-index);    
+    }
+    #endregion
+    
+    #region Leader in an array
+    
+    /// <summary>
+    /// https://takeuforward.org/data-structure/leaders-in-an-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static List<int> LeaderArrayBrute(int[] nums)
+    {
+        var res = new List<int>();
+        
+
+        for(int i = 0; i < nums.Length; i++)
+        {
+            bool isLeader = true;
+            for (int j = i + 1; j < nums.Length; j++)
+            {
+                if(nums[j] > nums[i])
+                {
+                    isLeader =false;
+                    break;
+                }
+
+            }
+            if(isLeader)
+            {
+                res.Add(nums[i]);
+            }
+        }
+    return res;
+    }
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/leaders-in-an-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static List<int> LeaderArrayOptimal(int[] nums)
+    {
+        var res = new List<int> ();
+
+        // Last element will always be a leader
+        int max = nums[nums.Length-1];
+        res.Add(max);
+
+        for(int i = nums.Length-2; i >= 0; i--)
+        {
+            if(nums[i] > max)
+            {
+                res.Add(nums[i]);
+                max = nums[i];
+            }
+        }
+        return res;
+    }
+    #endregion
+
+    #region Longest Consecutive Sequence
+    /// <summary>
+    /// https://takeuforward.org/data-structure/longest-consecutive-sequence-in-an-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int LongestConsecutiveBrute(int[] nums) {
+        int longest = 1;
+        
+        for(int i = 0; i< nums.Length; i++)
+        {
+            var x =nums[i];
+            var ctr = 1;
+
+            while(LinearSearch(nums,x+1))
+            {
+                x += 1;
+                ctr += 1;
+            }
+            
+            longest = Math.Max(longest,ctr);
+        }
+        return longest;
+    }
+
+    private static bool LinearSearch(int[] nums, int ele)
+    {
+        var res = false;
+        for(int i = 0; i < nums.Length; i++)
+        {
+            if(nums[i] == ele)
+            {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/longest-consecutive-sequence-in-an-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int LongestConsecutiveSort(int[] nums)
+    {
+        Array.Sort(nums);
+        var longest = 1;
+        var ctr = 1;
+        for(int i = 0; i < nums.Length-1; i++)
+        {   
+            if(nums[i+1] == nums[i]+1)
+            {
+                ctr += 1;
+                longest = Math.Max(longest,ctr);
+            }
+            else if(!(nums[i] == nums[i+1]))
+            {
+                
+                ctr = 1;
+            }
+            
+        }
+        return longest;
+    }
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/longest-consecutive-sequence-in-an-array/
+    /// </summary>
+    /// <param name="nums"></param>
+    /// <returns></returns>
+    public static int LongestConsecutiveOptimal(int[] nums)
+    {
+        int n = nums.Length;
+        if (n == 0)
+            return 0;
+
+        int longest = 1;
+         HashSet<int> set = new HashSet<int>();
+
+         for (int i = 0; i < nums.Length; i++)
+         {
+            set.Add(nums[i]);
+         }
+
+         foreach (int ele in set)
+         {
+            if(!set.Contains(ele-1))
+            {
+                // find consecutive numbers
+                int cnt = 1;
+                int x = ele;
+                while (set.Contains(x + 1))
+                {
+                    x = x + 1;
+                    cnt = cnt + 1;
+                }
+                longest = Math.Max(longest, cnt);
+
+            }
+         }
+        return longest;
+    }
+    #endregion
+
+    #region  Set Matrix Zeroes
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/set-matrix-zero/
+    /// </summary>
+    /// <param name="matrix"></param>
+    public void SetZeroesBinary(int[][] matrix) {
+        // Row length
+        var m = matrix.Length;
+        // Column length
+        var n = matrix[0].Length;
+
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    // mark entire row -1
+                    for(int k = 0; k < n; k++ )
+                    {
+                        if(matrix[i][k] != 0)
+                        {
+                            matrix[i][k] = int.MinValue;
+                        }
+                    }
+                    // mark entire column -1
+                    for(int k = 0; k < m; k++)
+                    {
+                        if(matrix[k][j] != 0)
+                        {
+                            matrix[k][j] = int.MinValue;
+                        }
+                    }
+                }
+            }
+        }
+
+        // mark all -1 to 0
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(matrix[i][j] == int.MinValue)
+                {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/set-matrix-zero/
+    /// </summary>
+    /// <param name="matrix"></param>
+    public void SetZeroesBetter(int[][] matrix) {
+        // Row length
+        var m = matrix.Length;
+        // Column length
+        var n = matrix[0].Length;
+
+        // row array
+        var row = new int[m];
+        // col array
+        var col = new int[n];
+
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    row[i] = 1;
+                    col[j] = 1;
+                }
+            }
+        }
+
+        // mark all elements 0 based on row array and col array
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                if(row[i] == 1 || col [j] == 1)
+                {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    /// https://takeuforward.org/data-structure/set-matrix-zero/
+    /// </summary>
+    /// <param name="matrix"></param>
+    public void SetZeroesOptimal(int[][] matrix) {
+        // Row length
+        var m = matrix.Length;
+        // Column length
+        var n = matrix[0].Length;
+
+        var firstrowZero = false;
+        var firstcolZero = false;
+
+        // check if first row contains zero
+        for(int i = 0; i < n; i++)
+        {
+            if(matrix[0][i] == 0)
+            {
+                firstrowZero = true;
+                break;
+            }
+        }
+
+        // check if first col contains zero
+        for(int i = 0; i < m; i++)
+        {
+            if(matrix[i][0] == 0)
+            {
+                firstcolZero = true;
+                break;
+            }
+        }
+         // Use the first row and first column to mark rows and columns containing zeros
+        for(int i = 1; i < m; i++)
+        {
+            for(int j = 1; j < n; j++)
+            {
+                if(matrix[i][j] == 0)
+                {
+                    matrix[0][j] = 0;
+                    matrix[i][0] = 0;
+                }
+            }
+        }
+
+        // Set elements to zero based on markings in the first row and first column
+        for(int i = 1; i < m; i++)
+        {
+            for(int j = 1; j < n; j++)
+            {
+                if(matrix[i][0] == 0 || matrix[0][j] == 0)
+                {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+        // Handle the first row and first column separately
+        if (firstrowZero)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[0][j] = 0;
+            }
+        }
+
+        if (firstcolZero)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+    #endregion
 }
